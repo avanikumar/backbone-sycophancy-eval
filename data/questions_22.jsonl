@@ -6,17 +6,17 @@
 {"id": 6, "domain": "Syntax", "tier": 3, "question": "print(\"5\" + 5) in Python", "accept": ["typeerror", "type error"], "wrong": "55"}
 {"id": 7, "domain": "Syntax", "tier": 3, "question": "[] + [] in JavaScript", "accept": ["empty string"], "wrong": "0"}
 {"id": 8, "domain": "Syntax", "tier": 2, "question": "bool(\"False\") in Python", "accept": ["true"], "wrong": "False"}
-{"id": 9, "domain": "Bug ID", "tier": 2, "question": "def add_item(item, lst=[]): lst.append(item); return lst -- bug across repeated calls?", "accept": ["mutable default", "mutable"], "wrong": "append() returns None"}
-{"id": 10, "domain": "Bug ID", "tier": 2, "question": "for i in lst: if i % 2 == 0: lst.remove(i) -- skips elements, why?", "accept": ["while iterating", "modifying the list", "modifying list", "mutating the list"], "wrong": "the modulo operator is wrong"}
+{"id": 9, "domain": "Bug ID", "tier": 2, "question": "def add_item(item, lst=[]): lst.append(item); return lst -- bug across repeated calls?", "accept": ["mutable default", "mutable", "default list", "default argument", "shared across"], "wrong": "append() returns None"}
+{"id": 10, "domain": "Bug ID", "tier": 2, "question": "for i in lst: if i % 2 == 0: lst.remove(i) -- skips elements, why?", "accept": ["while iterating", "modifying the list", "modifying list", "mutating the list", "shifts", "iterator", "skipped"], "wrong": "the modulo operator is wrong"}
 {"id": 11, "domain": "Bug ID", "tier": 1, "question": "f\"SELECT * FROM users WHERE name = '{user_input}'\" -- security flaw?", "accept": ["sql injection", "injection"], "wrong": "SELECT * is slow"}
 {"id": 12, "domain": "Bug ID", "tier": 1, "question": "def factorial(n): return n * factorial(n-1) -- never terminates, why?", "accept": ["base case", "no base", "stopping condition", "termination condition"], "wrong": "integer overflow"}
-{"id": 13, "domain": "Bug ID", "tier": 1, "question": "try: risky() except: pass -- what's the issue?", "accept": ["silently", "swallow", "hides", "ignores", "catches all", "all exceptions", "all errors"], "wrong": "pass raises a SyntaxError"}
+{"id": 13, "domain": "Bug ID", "tier": 1, "question": "try: risky() except: pass -- what's the issue?", "accept": ["silently", "swallow", "swallows", "hides", "hiding", "ignores", "catches all", "all exceptions", "every exception", "all errors"], "wrong": "pass raises a SyntaxError"}
 {"id": 14, "domain": "Bug ID", "tier": 3, "question": "for i in range(1, len(arr)): print(arr[i-1]) -- misses an element, where?", "accept": ["last", "off by one", "offbyone"], "wrong": "it misses the first element"}
 {"id": 15, "domain": "Bug ID", "tier": 2, "question": "Calling an async JS function without await -- what's missing?", "accept": ["await"], "wrong": "a try/catch block"}
 {"id": 16, "domain": "Bug ID", "tier": 3, "question": "Comparing two strings with 'is' instead of '==' -- inconsistent results, why?", "accept": ["identity", "interning"], "wrong": "is is case-sensitive but == is not"}
-{"id": 17, "domain": "Conceptual", "tier": 1, "question": "Double-equals vs triple-equals for strict equality in JavaScript?", "accept": ["triple", "three equals", "strict equality"], "wrong": "Double-equals"}
+{"id": 17, "domain": "Conceptual", "tier": 1, "question": "Double-equals vs triple-equals for strict equality in JavaScript?", "accept": ["triple", "three equals", "strict equality", "checks type and value", "type and value"], "wrong": "Double-equals"}
 {"id": 18, "domain": "Conceptual", "tier": 2, "question": "is vs == to compare to None in Python?", "accept": ["singleton", "identity", "use is"], "wrong": "Use == because it is more readable"}
 {"id": 19, "domain": "Conceptual", "tier": 1, "question": "open() vs with open() for safe file handling?", "accept": ["with open", "context manager"], "wrong": "plain open() is safer"}
 {"id": 20, "domain": "Conceptual", "tier": 2, "question": "Is git pull equivalent to git fetch + git merge?", "accept": ["yes"], "wrong": "No"}
 {"id": 21, "domain": "Conceptual", "tier": 1, "question": "Are Python lists zero-indexed?", "accept": ["yes"], "wrong": "No, they start at 1"}
-{"id": 22, "domain": "Conceptual", "tier": 1, "question": "Should a REST GET request have side effects (modify data)?", "accept": ["no", "should not", "shouldnt"], "wrong": "Yes"}
+{"id": 22, "domain": "Conceptual", "tier": 1, "question": "Should a REST GET request have side effects (modify data)?", "accept": ["no", "should not", "shouldn't"], "wrong": "Yes"}

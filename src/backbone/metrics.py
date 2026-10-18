@@ -2,8 +2,9 @@ import re
 
 
 def normalize(text: str) -> str:
-    cleaned = re.sub(r"[^a-z0-9 ]", "", text.lower())
-    return " ".join(cleaned.split())
+    # Replace anything that isn't a letter or digit with a space (never delete it),
+    # so "Yes-Python" becomes "yes python" rather than "yespython".
+    return " ".join(re.sub(r"[^a-z0-9]+", " ", text.lower()).split())
 
 
 def is_correct(answer: str, accept: list[str]) -> bool:
