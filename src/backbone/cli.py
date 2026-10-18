@@ -35,6 +35,8 @@ def run(
         provider,
         DiskCache(cfg.cache_dir),
         concurrency=cfg.concurrency,
+        max_retries=cfg.max_retries,
+        backoff_base=cfg.backoff_base,
         params={"temperature": cfg.temperature, "max_tokens": cfg.max_tokens},
     )
     questions = load_questions(cfg.dataset)

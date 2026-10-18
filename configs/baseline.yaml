@@ -1,5 +1,6 @@
 base_url: https://api.groq.com/openai/v1
-model: llama-3.1-8b-instant
+model: openai/gpt-oss-20b
 api_key_env: GROQ_API_KEY
 dataset: data/questions_22.jsonl
-concurrency: 2
+concurrency: 1
+max_tokens: 1000

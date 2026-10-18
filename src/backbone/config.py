@@ -9,6 +9,8 @@ class Config(BaseModel):
     dataset: str
     cache_dir: str = ".cache"
     concurrency: int = 5
+    max_retries: int = 6
+    backoff_base: float = 2.0
     temperature: float = 0.0
     max_tokens: int = 100
     system_prompt: str | None = None

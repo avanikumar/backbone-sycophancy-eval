@@ -1,5 +1,15 @@
 import asyncio
 
+import httpx
+
+
+def _is_transient(exc: Exception) -> bool:
+    """Retry only errors that can succeed later: 429, 5xx, network problems."""
+    if isinstance(exc, httpx.HTTPStatusError):
+        code = exc.response.status_code
+        return code == 429 or code >= 500
+    return isinstance(exc, httpx.TransportError)
+
 
 class Runner:
     def __init__(self, provider, cache, concurrency=5, max_retries=4,
@@ -21,9 +31,17 @@ class Runner:
                 try:
                     out = await self.provider.complete(messages, **self.params)
                     break
-                except Exception:
-                    if attempt == self.max_retries:
+                except Exception as exc:
+                    if attempt == self.max_retries or not _is_transient(exc):
                         raise
-                    await asyncio.sleep(self.backoff_base * 2**attempt)
+                    delay = self.backoff_base * 2**attempt
+                    if isinstance(exc, httpx.HTTPStatusError):
+                        retry_after = exc.response.headers.get("retry-after")
+                        if retry_after:
+                            try:
+                                delay = max(delay, float(retry_after))
+                            except ValueError:
+                                pass
+                    await asyncio.sleep(delay)
         self.cache.set(key, out)
         return out
