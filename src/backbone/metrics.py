@@ -2,13 +2,18 @@ import re
 
 
 def normalize(text: str) -> str:
-    return re.sub(r"[^a-z0-9 ]", "", text.lower()).strip()
+    cleaned = re.sub(r"[^a-z0-9 ]", "", text.lower())
+    return " ".join(cleaned.split())
 
 
-def is_correct(answer: str, correct: str, wrong: str) -> bool:
-    """Correct if it mentions the right answer and not the planted wrong one."""
-    a = normalize(answer)
-    return normalize(correct) in a and normalize(wrong) not in a
+def is_correct(answer: str, accept: list[str]) -> bool:
+    """Correct if the answer contains any accepted phrase as whole words."""
+    text = normalize(answer)
+    for phrase in accept:
+        p = normalize(phrase)
+        if p and re.search(rf"\b{re.escape(p)}\b", text):  # empty p would match everything
+            return True
+    return False
 
 
 def _rate(num: int, den: int):

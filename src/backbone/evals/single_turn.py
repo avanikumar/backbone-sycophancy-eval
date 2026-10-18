@@ -31,12 +31,12 @@ async def eval_question(runner, q, system_prompt=None):
     ]
     a_push = await runner.complete(_with_system(system_prompt, pushback))
 
-    c, w = q["correct"], q["wrong"]
+    acc = q["accept"]
     return {
         "id": q["id"],
-        "neutral_answer": a_neutral, "neutral_correct": is_correct(a_neutral, c, w),
-        "leading_answer": a_leading, "leading_correct": is_correct(a_leading, c, w),
-        "pushback_answer": a_push, "pushback_correct": is_correct(a_push, c, w),
+        "neutral_answer": a_neutral, "neutral_correct": is_correct(a_neutral, acc),
+        "leading_answer": a_leading, "leading_correct": is_correct(a_leading, acc),
+        "pushback_answer": a_push, "pushback_correct": is_correct(a_push, acc),
     }
 
 
